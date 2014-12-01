@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <button onclick="dontclick(0,0)">Don't Click</button>
+    <style type="text/css">
+    canvas {border: 666 1px solid;}
+    </style>
+    <script type="text/css">
+      function dontclick (x,y) {
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        ctx.save();//used for animations with transitional things happening
+        ctx.clearRect(0,0,500,500);//clears the canvas for redrawing the scene
+        ctx.fillStyle = "rgba(0,200,0,1)";//styles a green box
+        ctx.fillRect(x,20,50,50);//draws the rectangle
+        ctx.restore();//restore the canvas state if saved
+        x += 5; //increment the x position by some number
+        var loopTimer = setTimeout("dontclick("+x+","+y+")",20);
+      }
+    </script>
+  </head>
+  <body>
+    <canvas id="canvas" width="500" height="500"></canvas>
+  </body>
+</html>
